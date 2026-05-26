@@ -2,6 +2,10 @@
 vim.g.mapleader = ' '
 vim.g.have_nerd_font = true
 
+require('vim._core.ui2').enable({
+    enable = true,
+})
+
 -- Enables autocomplete suggestions while typing
 vim.opt.autocomplete = true
 -- Where to scan for complete options
@@ -103,6 +107,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if client then
             vim.lsp.completion.enable(true, client.id, event.buf, {
                 autotrigger = true,
+
                 convert = function(item)
                     return { abbr = item.label:gsub("%b()", "") }
                 end,
